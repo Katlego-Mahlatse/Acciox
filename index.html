@@ -3,23 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlackLedger AI - Automated Bookkeeping</title>
+    <title>Acciox Ledger - AI Bookkeeping</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background: black; }
+        /* Custom modal popup */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 20px;
+            background: #1a1a1a;
+            border: 1px solid #ff4500;
+            border-radius: 12px;
+            padding: 1rem;
+            z-index: 50;
+            min-width: 180px;
+            box-shadow: 0 4px 20px rgba(255, 68, 0, 0.3);
+        }
+        .modal a {
+            display: block;
+            padding: 8px 12px;
+            color: #ff6347;
+            text-decoration: none;
+            transition: all 0.2s;
+            border-radius: 6px;
+        }
+        .modal a:hover {
+            background: #ff4500;
+            color: black;
+        }
     </style>
 </head>
-<body class="bg-black text-white">
+<body class="bg-black text-red-500">
     <div class="min-h-screen flex flex-col">
         <!-- Navigation -->
-        <nav class="flex justify-between items-center px-8 py-6 border-b border-gray-800">
-            <div class="text-2xl font-bold">
-                <span class="text-red-500">Black</span>Ledger
+        <nav class="flex justify-between items-center px-8 py-6 border-b border-red-900">
+            <!-- Hamburger Menu (Orange Circle + 3 Red Stripes) -->
+            <div class="relative">
+                <button id="hamburgerBtn" class="w-12 h-12 rounded-full bg-orange-600 flex flex-col items-center justify-center gap-1.5 hover:bg-orange-700 transition focus:outline-none">
+                    <span class="w-5 h-0.5 bg-red-600 rounded"></span>
+                    <span class="w-5 h-0.5 bg-red-600 rounded"></span>
+                    <span class="w-5 h-0.5 bg-red-600 rounded"></span>
+                </button>
+                <!-- Popup Modal -->
+                <div id="popupModal" class="modal">
+                    <a href="login.html">🔐 Login</a>
+                    <a href="privacy.html">📄 Privacy Policy</a>
+                    <a href="contact.html">📧 Contact</a>
+                    <a href="moreinfo.html">ℹ️ More Info</a>
+                </div>
             </div>
+
+            <!-- Brand Name -->
+            <div class="text-2xl font-bold text-orange-500">
+                Acciox<span class="text-red-600"> Ledger</span>
+            </div>
+
+            <!-- Right Nav Links -->
             <div class="space-x-6">
-                <a href="#" class="hover:text-red-400 transition">Features</a>
-                <a href="#" class="hover:text-red-400 transition">Pricing</a>
-                <a href="#" class="hover:text-red-400 transition">Login</a>
+                <a href="#" class="text-red-400 hover:text-orange-500 transition">Features</a>
+                <a href="#" class="text-red-400 hover:text-orange-500 transition">Pricing</a>
+                <a href="#" class="text-red-400 hover:text-orange-500 transition">Login</a>
             </div>
         </nav>
 
@@ -27,26 +72,45 @@
         <div class="flex-1 flex items-center justify-center px-6 py-24">
             <div class="max-w-4xl mx-auto text-center">
                 <h1 class="text-6xl md:text-7xl font-bold mb-6">
-                    <span class="text-red-500">AI-Powered</span><br>
-                    Bookkeeping Automation
+                    <span class="text-orange-500">AI-Powered</span><br>
+                    <span class="text-red-600">Bookkeeping Automation</span>
                 </h1>
-                <p class="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+                <p class="text-xl text-orange-400 mb-8 max-w-2xl mx-auto">
                     Replace QuickBooks & Xero. 100% automated double-entry ledger. 
                     From bank statement to audit-ready books.
                 </p>
                 <div class="flex gap-4 justify-center flex-wrap">
-                    <button class="bg-red-600 hover:bg-red-700 px-8 py-3 rounded-lg font-semibold transition transform hover:scale-105">
+                    <button class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold transition transform hover:scale-105">
                         Start Free Trial →
                     </button>
-                    <button class="border border-gray-700 hover:border-red-500 px-8 py-3 rounded-lg font-semibold transition">
+                    <button class="border border-orange-600 hover:border-red-500 text-orange-400 hover:text-red-400 px-8 py-3 rounded-lg font-semibold transition">
                         Schedule Demo
                     </button>
                 </div>
-                <p class="text-sm text-gray-500 mt-8">
+                <p class="text-sm text-red-400/70 mt-8">
                     No credit card required • Cancel anytime
                 </p>
             </div>
         </div>
     </div>
+
+    <script>
+        // Hamburger menu toggle
+        const btn = document.getElementById('hamburgerBtn');
+        const modal = document.getElementById('popupModal');
+
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isVisible = modal.style.display === 'block';
+            modal.style.display = isVisible ? 'none' : 'block';
+        });
+
+        // Close modal when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!btn.contains(e.target) && !modal.contains(e.target)) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
