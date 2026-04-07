@@ -39,6 +39,32 @@
             background: #ff4500;
             color: black;
         }
+        /* Slideshow container */
+        .slideshow-container {
+            max-width: 1200px;
+            margin: 2rem auto 0 auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(255, 68, 0, 0.2);
+        }
+        .slide {
+            display: none;
+            width: 100%;
+        }
+        .slide img {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: cover;
+        }
+        .fade {
+            animation: fadeEffect 1s ease-in-out;
+        }
+        @keyframes fadeEffect {
+            from { opacity: 0.4; }
+            to { opacity: 1; }
+        }
     </style>
 </head>
 <body class="bg-black text-red-500">
@@ -68,19 +94,57 @@
             </div>
         </nav>
 
+        <!-- Image Slideshow (between navbar and hero text) -->
+        <div class="slideshow-container">
+            <div class="slide fade">
+                <img src="premium_photo-1663013659189-58ff1c9e1976.jpeg" alt="Bookkeeping slide 1">
+            </div>
+            <div class="slide fade">
+                <img src="premium_photo-1661270415926-37a9d24aff30.jpeg" alt="Bookkeeping slide 2">
+            </div>
+            <div class="slide fade">
+                <img src="photo-1719381565370-86f9d7a9fc34.jpeg" alt="Bookkeeping slide 3">
+            </div>
+            <div class="slide fade">
+                <img src="photo-1526628953301-3e589a6a8b74.jpeg" alt="Bookkeeping slide 4">
+            </div>
+        </div>
+
         <!-- Hero Section (no buttons, no description with QuickBooks) -->
-        <div class="flex-1 flex items-center justify-center px-6 py-24">
+        <div class="flex-1 flex items-center justify-center px-6 py-16">
             <div class="max-w-4xl mx-auto text-center">
                 <h1 class="text-6xl md:text-7xl font-bold mb-6">
                     <span class="text-orange-500">AI-Powered</span><br>
                     <span class="text-red-600">Bookkeeping Automation</span>
                 </h1>
-                <!-- Removed the "Replace QuickBooks" paragraph and buttons -->
             </div>
         </div>
     </div>
 
     <script>
+        // Slideshow logic - 3 seconds per image
+        let slideIndex = 0;
+        const slides = document.getElementsByClassName("slide");
+        
+        function showSlides() {
+            // Hide all slides
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            // Move to next slide
+            slideIndex++;
+            if (slideIndex > slides.length) {
+                slideIndex = 1;
+            }
+            // Show current slide
+            slides[slideIndex - 1].style.display = "block";
+            // Change image every 3 seconds
+            setTimeout(showSlides, 3000);
+        }
+        
+        // Start the slideshow when page loads
+        showSlides();
+
         // Hamburger menu toggle
         const btn = document.getElementById('hamburgerBtn');
         const modal = document.getElementById('popupModal');
