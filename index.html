@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>acciox - Bookkeeping Firm</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Jedira font (using Audiowide as approximation) -->
+    <!-- Jedira font for brand name only -->
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <style>
         body { background: black; }
@@ -13,15 +13,19 @@
             font-family: 'Audiowide', cursive;
             letter-spacing: 1px;
         }
-        /* Neon glow effect for heading */
-        .neon-glow {
-            text-shadow: 0 0 5px #ff4500, 0 0 10px #ff4500, 0 0 20px #ff6347, 0 0 30px #ff0000;
-            animation: pulse 2s infinite;
+        /* Gradient text effect (no neon) */
+        .gradient-text {
+            background: linear-gradient(45deg, #ff4500, #ff6347, #ff0000, #ff8c00);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientShift 3s ease infinite;
         }
-        @keyframes pulse {
-            0% { text-shadow: 0 0 5px #ff4500, 0 0 10px #ff6347; }
-            50% { text-shadow: 0 0 15px #ff0000, 0 0 25px #ff4500, 0 0 35px #ff6347; }
-            100% { text-shadow: 0 0 5px #ff4500, 0 0 10px #ff6347; }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         /* Custom modal popup */
         .modal {
@@ -44,6 +48,7 @@
             text-decoration: none;
             transition: all 0.2s;
             border-radius: 6px;
+            font-family: system-ui, sans-serif;
         }
         .modal a:hover {
             background: #ff4500;
@@ -75,15 +80,15 @@
             from { opacity: 0.4; }
             to { opacity: 1; }
         }
-        /* Dots for slideshow */
+        /* Smaller dots for slideshow */
         .dots-container {
             text-align: center;
             margin-top: 10px;
         }
         .dot {
-            height: 12px;
-            width: 12px;
-            margin: 0 5px;
+            height: 6px;
+            width: 6px;
+            margin: 0 4px;
             background-color: #555;
             border-radius: 50%;
             display: inline-block;
@@ -93,14 +98,14 @@
         .active-dot {
             background-color: #ff4500;
         }
-        /* Blocks styling */
+        /* Blocks styling - normal font, no emojis */
         .blocks-container {
             max-width: 800px;
             margin: 2rem auto;
             padding: 0 20px;
         }
         .block {
-            background-color: #ff8c00; /* orange */
+            background-color: #ff8c00;
             border-radius: 12px;
             margin-bottom: 16px;
             overflow: hidden;
@@ -115,7 +120,7 @@
             color: black;
             font-weight: bold;
             font-size: 1.25rem;
-            font-family: 'Audiowide', cursive;
+            font-family: system-ui, sans-serif;
         }
         .block-description {
             display: none;
@@ -126,6 +131,7 @@
             color: #ff8c00;
             font-size: 0.95rem;
             line-height: 1.5;
+            font-family: system-ui, sans-serif;
         }
         .block-description.show {
             display: block;
@@ -141,25 +147,25 @@
                 acciox
             </div>
 
-            <!-- Hamburger Menu (RED circle + ORANGE stripes) on right edge -->
+            <!-- Hamburger Menu (ROSE RED circle + orange stripes) -->
             <div class="relative">
-                <button id="hamburgerBtn" class="w-12 h-12 rounded-full bg-red-600 flex flex-col items-center justify-center gap-1.5 hover:bg-red-700 transition focus:outline-none">
+                <button id="hamburgerBtn" class="w-12 h-12 rounded-full bg-rose-500 flex flex-col items-center justify-center gap-1.5 hover:bg-rose-600 transition focus:outline-none" style="background-color: #ff6666;">
                     <span class="w-5 h-0.5 bg-orange-500 rounded"></span>
                     <span class="w-5 h-0.5 bg-orange-500 rounded"></span>
                     <span class="w-5 h-0.5 bg-orange-500 rounded"></span>
                 </button>
-                <!-- Popup Modal -->
+                <!-- Popup Modal (no emojis) -->
                 <div id="popupModal" class="modal">
-                    <a href="login.html">🔐 Login</a>
-                    <a href="signup.html">📝 Sign Up</a>
-                    <a href="privacy.html">📄 Privacy Policy</a>
-                    <a href="contact.html">📧 Contact</a>
-                    <a href="moreinfo.html">ℹ️ More Info</a>
+                    <a href="login.html">Login</a>
+                    <a href="signup.html">Sign Up</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="moreinfo.html">More Info</a>
                 </div>
             </div>
         </nav>
 
-        <!-- Image Slideshow (between navbar and hero text) with dots -->
+        <!-- Image Slideshow with smaller dots -->
         <div class="slideshow-container">
             <div class="slide fade">
                 <img src="premium_photo-1663013659189-58ff1c9e1976.jpeg" alt="Bookkeeping slide 1">
@@ -176,42 +182,41 @@
         </div>
         <div class="dots-container" id="dotsContainer"></div>
 
-        <!-- Hero Section: Only heading "Bookkeeping Firm" with neon glow -->
+        <!-- Hero Section: "Bookkeeping Firm" with gradient effect -->
         <div class="flex justify-center px-6 py-8">
-            <h1 class="text-5xl md:text-6xl font-bold neon-glow text-center">
-                <span class="text-orange-500">Bookkeeping</span> <span class="text-red-600">Firm</span>
+            <h1 class="text-5xl md:text-6xl font-bold gradient-text text-center">
+                Bookkeeping Firm
             </h1>
         </div>
 
-        <!-- Blocks Section -->
+        <!-- Blocks Section (no emojis) -->
         <div class="blocks-container">
             <div class="block" data-desc="We handle all your financial records, categorize transactions, and ensure double-entry accuracy. You focus on your business.">
-                <div class="block-header">📊 What We Do For You</div>
+                <div class="block-header">What We Do For You</div>
                 <div class="block-description">We handle all your financial records, categorize transactions, and ensure double-entry accuracy. You focus on your business.</div>
             </div>
             <div class="block" data-desc="Over 10 years serving 2,000+ companies across multiple industries. Our team knows bookkeeping inside out.">
-                <div class="block-header">🏆 Our Experience</div>
+                <div class="block-header">Our Experience</div>
                 <div class="block-description">Over 10 years serving 2,000+ companies across multiple industries. Our team knows bookkeeping inside out.</div>
             </div>
             <div class="block" data-desc="AI-powered automation + human review for edge cases. Bank statements → ledger → reports in hours, not weeks.">
-                <div class="block-header">⚙️ How We Do The Job</div>
+                <div class="block-header">How We Do The Job</div>
                 <div class="block-description">AI-powered automation + human review for edge cases. Bank statements → ledger → reports in hours, not weeks.</div>
             </div>
             <div class="block" data-desc="Flat monthly fee per client. No hidden fees. Volume discounts available for 10+ companies.">
-                <div class="block-header">💰 Our Cost</div>
+                <div class="block-header">Our Cost</div>
                 <div class="block-description">Flat monthly fee per client. No hidden fees. Volume discounts available for 10+ companies.</div>
             </div>
         </div>
     </div>
 
     <script>
-        // Slideshow logic with dots
+        // Slideshow logic with smaller dots
         let slideIndex = 0;
         const slides = document.getElementsByClassName("slide");
         const dotsContainer = document.getElementById("dotsContainer");
         let dots = [];
 
-        // Create dots based on number of slides
         function createDots() {
             for (let i = 0; i < slides.length; i++) {
                 const dot = document.createElement("span");
@@ -228,13 +233,10 @@
         }
 
         function showSlides(index) {
-            // Hide all slides
             for (let i = 0; i < slides.length; i++) {
                 slides[i].style.display = "none";
             }
-            // Show current slide
             slides[index].style.display = "block";
-            // Update active dot
             for (let i = 0; i < dots.length; i++) {
                 dots[i].classList.remove("active-dot");
             }
@@ -256,23 +258,19 @@
             timer = setInterval(nextSlide, 3000);
         }
 
-        // Initialize slideshow
         createDots();
         showSlides(0);
 
-        // Block dropdown functionality (click to toggle description)
+        // Block dropdown functionality
         const blocks = document.querySelectorAll('.block');
         blocks.forEach(block => {
             const header = block.querySelector('.block-header');
             const desc = block.querySelector('.block-description');
-            // Set description text from data-desc (or keep existing)
             if (block.getAttribute('data-desc')) {
                 desc.textContent = block.getAttribute('data-desc');
             }
             block.addEventListener('click', (e) => {
-                // Toggle the clicked block's description
                 desc.classList.toggle('show');
-                // Optional: close others? Not requested, but keeps clean. We'll leave as is per "each block clicked a dropdown appear"
             });
         });
 
@@ -286,7 +284,6 @@
             modal.style.display = isVisible ? 'none' : 'block';
         });
 
-        // Close modal when clicking outside
         document.addEventListener('click', (e) => {
             if (!btn.contains(e.target) && !modal.contains(e.target)) {
                 modal.style.display = 'none';
@@ -294,4 +291,4 @@
         });
     </script>
 </body>
-                                                                 </html>
+</html>
