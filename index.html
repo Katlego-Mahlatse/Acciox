@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acciox Ledger - AI Bookkeeping</title>
+    <title>acciox - AI Bookkeeping</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Jedira font (using Audiowide as approximation) -->
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <style>
         body { background: black; }
+        .jedira {
+            font-family: 'Audiowide', cursive;
+            letter-spacing: 1px;
+        }
         /* Custom modal popup */
         .modal {
             display: none;
             position: fixed;
             top: 70px;
-            left: 20px;
+            right: 20px;
             background: #1a1a1a;
             border: 1px solid #ff4500;
             border-radius: 12px;
@@ -37,11 +43,16 @@
 </head>
 <body class="bg-black text-red-500">
     <div class="min-h-screen flex flex-col">
-        <!-- Navigation -->
-        <nav class="flex justify-between items-center px-8 py-6 border-b border-red-900">
-            <!-- Hamburger Menu (Orange Circle + 3 Red Stripes) -->
+        <!-- Navigation with orange background -->
+        <nav class="flex justify-between items-center px-8 py-6 bg-orange-600">
+            <!-- Brand: acciox in black jedira font on left -->
+            <div class="jedira text-3xl font-bold text-black tracking-wider">
+                acciox
+            </div>
+
+            <!-- Hamburger Menu (Orange Circle + 3 Red Stripes) on right edge -->
             <div class="relative">
-                <button id="hamburgerBtn" class="w-12 h-12 rounded-full bg-orange-600 flex flex-col items-center justify-center gap-1.5 hover:bg-orange-700 transition focus:outline-none">
+                <button id="hamburgerBtn" class="w-12 h-12 rounded-full bg-orange-800 flex flex-col items-center justify-center gap-1.5 hover:bg-orange-900 transition focus:outline-none">
                     <span class="w-5 h-0.5 bg-red-600 rounded"></span>
                     <span class="w-5 h-0.5 bg-red-600 rounded"></span>
                     <span class="w-5 h-0.5 bg-red-600 rounded"></span>
@@ -49,47 +60,22 @@
                 <!-- Popup Modal -->
                 <div id="popupModal" class="modal">
                     <a href="login.html">🔐 Login</a>
+                    <a href="signup.html">📝 Sign Up</a>
                     <a href="privacy.html">📄 Privacy Policy</a>
                     <a href="contact.html">📧 Contact</a>
                     <a href="moreinfo.html">ℹ️ More Info</a>
                 </div>
             </div>
-
-            <!-- Brand Name -->
-            <div class="text-2xl font-bold text-orange-500">
-                Acciox<span class="text-red-600"> Ledger</span>
-            </div>
-
-            <!-- Right Nav Links -->
-            <div class="space-x-6">
-                <a href="#" class="text-red-400 hover:text-orange-500 transition">Features</a>
-                <a href="#" class="text-red-400 hover:text-orange-500 transition">Pricing</a>
-                <a href="#" class="text-red-400 hover:text-orange-500 transition">Login</a>
-            </div>
         </nav>
 
-        <!-- Hero Section -->
+        <!-- Hero Section (no buttons, no description with QuickBooks) -->
         <div class="flex-1 flex items-center justify-center px-6 py-24">
             <div class="max-w-4xl mx-auto text-center">
                 <h1 class="text-6xl md:text-7xl font-bold mb-6">
                     <span class="text-orange-500">AI-Powered</span><br>
                     <span class="text-red-600">Bookkeeping Automation</span>
                 </h1>
-                <p class="text-xl text-orange-400 mb-8 max-w-2xl mx-auto">
-                    Replace QuickBooks & Xero. 100% automated double-entry ledger. 
-                    From bank statement to audit-ready books.
-                </p>
-                <div class="flex gap-4 justify-center flex-wrap">
-                    <button class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold transition transform hover:scale-105">
-                        Start Free Trial →
-                    </button>
-                    <button class="border border-orange-600 hover:border-red-500 text-orange-400 hover:text-red-400 px-8 py-3 rounded-lg font-semibold transition">
-                        Schedule Demo
-                    </button>
-                </div>
-                <p class="text-sm text-red-400/70 mt-8">
-                    No credit card required • Cancel anytime
-                </p>
+                <!-- Removed the "Replace QuickBooks" paragraph and buttons -->
             </div>
         </div>
     </div>
